@@ -23,7 +23,7 @@
 
 Name:           python-%{pkgname}
 Version:        0.1.5
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        %{sum}
 
 License:        BSD licence
@@ -38,7 +38,7 @@ BuildArch:      noarch
 
 %package -n python2-%{pkgname}
 Summary:        %{sum}
-Requires:       python2-requests
+Requires:       python-requests
 BuildRequires:  python2-devel
 BuildRequires:  python-setuptools
 Provides:       python-requests-aws
