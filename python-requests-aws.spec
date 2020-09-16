@@ -51,7 +51,7 @@ Obsoletes:      python-requests-aws < 0.1.5-1%{?dist}
 %if %{with python3}
 %package -n python%{python3_pkgversion}-%{pkgname}
 Summary:        %{sum}
-Requires:       python%{python3_pkgversion}-requests
+Requires:       python36-requests
 BuildRequires:  python%{python3_pkgversion}-devel
 BuildRequires:  python%{python3_pkgversion}-setuptools
 
