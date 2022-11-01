@@ -29,7 +29,7 @@
 
 Name:           python-%{pkgname}
 Version:        0.1.5
-Release:        3.CROC1%{?dist}
+Release:        3.CROC2%{?dist}
 Summary:        %{sum}
 
 License:        BSD licence
@@ -115,6 +115,9 @@ find %buildroot/ -name '*.egg-info' -exec rm -rf -- '{}' '+'
 
 
 %changelog
+* Tue Nov 1 2022 Ivan Konov <ikonov@croc.ru> - 0.1.5-3.CROC2
+- Do not build py2 packages on rhel8+
+
 * Sat Jun 29 2019 Vladislav Odintsov <odivlad@gmail.com> - 0.1.5-2
 - Add support for py2/py3 build
 
