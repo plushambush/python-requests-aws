@@ -17,6 +17,12 @@
 %{!?python2_sitelib: %global python2_sitelib %(%{__python2} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())")}
 %endif
 
+%if 0%{?rhel} && 0%{?rhel} >= 8
+%bcond_with python2
+%else
+%bcond_without python2
+%endif
+
 %define pkgname requests-aws
 %global sum AWS authentication for Amazon S3 for the python requests module
 %global descr AWS authentication for Amazon S3 for the python requests module
@@ -35,7 +41,7 @@ BuildArch:      noarch
 %description
 %{descr}
 
-
+%if %{with python2}
 %package -n python2-%{pkgname}
 Summary:        %{sum}
 Requires:       python-requests
@@ -46,7 +52,7 @@ Obsoletes:      python-requests-aws < 0.1.5-1%{?dist}
 
 %description -n python2-%{pkgname}
 %{descr}
-
+%endif
 
 %if %{with python3}
 %package -n python%{python3_pkgversion}-%{pkgname}
@@ -67,7 +73,9 @@ sed -i '/setup_requires/d; /install_requires/d; /dependency_links/d' setup.py
 
 
 %build
+%if %{with python2}
 %{py2_build}
+%endif
 
 %if %{with python3}
 %{py3_build}
@@ -77,7 +85,9 @@ sed -i '/setup_requires/d; /install_requires/d; /dependency_links/d' setup.py
 %install
 [ %buildroot = "/" ] || rm -rf %buildroot
 
+%if %{with python2}
 %{py2_install}
+%endif
 
 %if %{with python3}
 %{py3_install}
@@ -85,11 +95,12 @@ sed -i '/setup_requires/d; /install_requires/d; /dependency_links/d' setup.py
 
 find %buildroot/ -name '*.egg-info' -exec rm -rf -- '{}' '+'
 
-
+%if %{with python2}
 %files -n python2-%{pkgname}
 %defattr(-,root,root,-)
 %doc LICENSE.txt README.md
 %{python2_sitelib}/*
+%endif
 
 %if %{with python3}
 %files -n python%{python3_pkgversion}-%{pkgname}
