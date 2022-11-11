@@ -29,7 +29,7 @@
 
 Name:           python-%{pkgname}
 Version:        0.1.5
-Release:        3.CROC2%{?dist}
+Release:        3.CROC1Test1227902%{?dist}
 Summary:        %{sum}
 
 License:        BSD licence
